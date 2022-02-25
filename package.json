@@ -1,0 +1,24 @@
+{
+  "name": "social-network-api",
+  "description": "## Your Task",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inklein1997/social-network-api.git"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  },
+  "author": "Michael Klein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inklein1997/social-network-api/issues"
+  },
+  "homepage": "https://github.com/inklein1997/social-network-api#readme"
+}
