@@ -1,7 +1,8 @@
+require('dotenv').config({ path: require('find-config')('.env') });
 const { connect, connection } = require('mongoose');
 
 const connectionString =
-    process.env.MONGODB_URI || process.env.local_connection;
+    process.env.MONGODB_URL || process.env.local_connection;
 
 connect(connectionString, {
     useNewUrlParser: true,
