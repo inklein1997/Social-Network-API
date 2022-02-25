@@ -38,7 +38,9 @@ const userSchema = new Schema(
     }
 )
 
-const User = model('Reaction', userSchema, 'Reaction');
+
+
+const User = model('User', userSchema, 'User');
 
 // const user = new Reaction();
 
