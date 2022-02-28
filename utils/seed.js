@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const usernames = require('./data')
+const { users } = require('./data')
 
 connection.on('error', err => err)
 
@@ -11,8 +11,11 @@ connection.once('open', async () => {
     await Thought.deleteMany({});
 
     const reactions = [];
-    const users = [...usernames];
 
-    
+    User.insertMany(users, (err, userData) =>
+        err ? console.error(err) : console.log(userData)
+    )
+
+
 
 })

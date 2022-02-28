@@ -8,7 +8,8 @@
     "url": "git+https://github.com/inklein1997/social-network-api.git"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node utils/seed.js"
   },
   "dependencies": {
     "dotenv": "^16.0.0",

@@ -1,46 +1,48 @@
-const usernames = [
-    'inklein1997',
-    'deklein1997',
-    'rangerbat96',
-    'marlen684',
-]
-
 const users = [
     {
         username: 'inklein1997',
         email: 'inklein1997@gmail.com',
         friends: [
-            'deklein1997',
-            'rangerbat96',
-            'marlen684',
-        ]
+            {
+                name: 'deklein1997',
+                email: 'deklein1997@gmail.com'
+            },
+            {
+                name: 'rangerbat96',
+                email: 'rangerbat96@gmail.com'
+            },
+        ],
+        thoughts: [],
     },
     {
         username: 'deklein1997',
         email: 'deklein1997@gmail.com',
         friends: [
-            'deklein1997',
-            'rangerbat96',
-            'marlen684',
+            {
+                name: 'inklein1997',
+                email: 'inklein1997@gmail.com'
+            },
+            {
+                name: 'rangerbat96',
+                email: 'rangerbat96@gmail.com'
+            },
         ],
+        thoughts: []
     },
     {
         username: 'rangerbat96',
         email: 'rangerbat96@gmail.com',
         friends: [
-            'deklein1997',
-            'rangerbat96',
-            'marlen684',
+            {
+                name: 'inklein1997',
+                email: 'inklein1997@gmail.com'
+            },
+            {
+                name: 'deklein1997',
+                email: 'deklein1997@gmail.com'
+            },
         ],
-    },
-    {
-        username: 'marlen684',
-        email: 'marlen684@gmail.com',
-        friends: [
-            'deklein1997',
-            'rangerbat96',
-            'marlen684',
-        ],
+        thoughts: []
     },
 ]
 
@@ -63,4 +65,4 @@ const reactions = [
     },
 ]
 
-module.exports = { usernames, reactions }
+module.exports = { users, reactions }
