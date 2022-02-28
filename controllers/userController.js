@@ -39,4 +39,22 @@ const deleteUser = (req, res) => {
         .catch(err => res.status(500).json(err))
 }
 
-module.exports = { getUsers, getSingleUser, createUser, updateUser, deleteUser }
+const addFriend = (req, res) => {
+    User.findOneAndUpdate(
+        { id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId } }
+    )
+        .then(userData => !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData))
+        .catch(err => res.status(500).json(err))
+}
+
+const deleteFriend = (req, res) => {
+    User.findOneAndUpdate(
+        { id: req.params.userId },
+        { $pull: { friends: req.params.friendId } }
+    )
+        .then(userData => !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData))
+        .catch(err => res.status(500).json(err))
+}
+
+module.exports = { getUsers, getSingleUser, createUser, updateUser, deleteUser, addFriend, deleteFriend }

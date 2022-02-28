@@ -10,11 +10,11 @@ connection.once('open', async () => {
     await User.deleteMany({});
     await Thought.deleteMany({});
 
-    const reactions = [];
+    // const reactions = [];
 
-    User.insertMany(users, (err, userData) =>
-        err ? console.error(err) : console.log(userData)
-    )
+    // User.insertMany(users, (err, userData) =>
+    //     err ? console.error(err) : console.log(userData)
+    // )
 
 
 
