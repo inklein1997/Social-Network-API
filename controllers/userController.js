@@ -34,7 +34,8 @@ const updateUser = async (req, res) => {
     try {
         const userData = await User.findOneAndUpdate(
             { _id: req.params.id },
-            req.body
+            req.body,
+            { new: true }
         )
         !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData)
     } catch (err) {
@@ -57,7 +58,8 @@ const addFriend = async (req, res) => {
     try {
         const userData = await User.findOneAndUpdate(
             { id: req.params.userId },
-            { $addToSet: { friends: req.params.friendId } }
+            { $addToSet: { friends: req.params.friendId } },
+            { new: true }
         )
         !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData)
     } catch (err) {
@@ -69,7 +71,8 @@ const deleteFriend = async (req, res) => {
     try {
         const userData = await User.findOneAndUpdate(
             { id: req.params.userId },
-            { $pull: { friends: req.params.friendId } }
+            { $pull: { friends: req.params.friendId } },
+            { new: true }
         )
         !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData)
     } catch (err) {

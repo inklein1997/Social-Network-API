@@ -1,4 +1,5 @@
 const { Thought, User } = require('../models');
+const { ObjectId } = require('mongoose')
 
 const getThoughts = async (req, res) => {
     try {
@@ -11,8 +12,9 @@ const getThoughts = async (req, res) => {
 
 const getSingleThought = async (req, res) => {
     try {
-        const thoughtData = await Thought.findOne({ _id: req.params.id })
-            .select('-__v')
+        const thoughtData = await Thought.findById({ _id: req.params.id })
+        console.log(thoughtData)
+            // .select('-__v')
             .populate('reactions')
         !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
     } catch (err) {
@@ -22,13 +24,14 @@ const getSingleThought = async (req, res) => {
 
 const createThought = async (req, res) => {
     try {
-    console.log(req.body.username)
+        console.log(req.body.username)
         const thoughtData = await Thought.create(req.body)
         const userData = await User.findOneAndUpdate(
-            {username: req.body.username},
-            {$addToSet: {thoughts: thoughtData._id}},
-            {new: true}
+            { username: req.body.username },
+            { $addToSet: { thoughts: thoughtData._id } },
+            { new: true }
         )
+            .populate('thoughts')
         res.status(200).json(userData)
     } catch (err) {
         res.status(500).json(err)
@@ -39,7 +42,8 @@ const updateThought = async (req, res) => {
     try {
         const thoughtData = await Thought.findOneAndUpdate(
             { _id: req.params.id },
-            req.body
+            req.body,
+            { new: true }
         )
         !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
     } catch (err) {
@@ -53,12 +57,12 @@ const deleteThought = async (req, res) => {
             { _id: req.params.id }
         )
         const UserThoughtData = await User.findOneAndUpdate(
-            {thoughts: req.params.id },
-            {$pull: {thoughts: req.params.id}},
-            {new: true}
-            )
-        
-        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+            { thoughts: req.params.id },
+            { $pull: { thoughts: req.params.id } },
+            { new: true }
+        )
+
+        !UserThoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(UserThoughtData)
     } catch (err) {
         res.status(500).json(err)
     }
