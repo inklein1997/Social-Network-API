@@ -1,60 +1,78 @@
 const { Thought } = require('../models');
 
-const getThoughts = (req, res) => {
-    Thought.find()
-        .then(thoughtData => res.status(200).json(thoughtData))
-        .catch(err => res.status(500).json(err))
+const getThoughts = async (req, res) => {
+    try {
+        const thoughtData = await Thought.find();
+        res.status(200).json(thoughtData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const getSingleThought = (req, res) => {
-    Thought.findOne({ _id: req.params.id })
-        .select('-__v')
-        .populate(reactions)
-        .then(thoughtData => {
-            !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(thoughtData)
-        })
-        .catch(err => res.status(500).json(err))
+const getSingleThought = async (req, res) => {
+    try {
+        const thoughtData = await Thought.findOne({ _id: req.params.id })
+            .select('-__v')
+            .populate('reactions')
+        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const createThought = (req, res) => {
-    Thought.create(req.body)
-        .then(thoughtData => res.status(200).json(thoughtData))
-        .catch(err => res.status(500).json(err))
+const createThought = async (req, res) => {
+    try {
+        const thoughtData = await Thought.create(req.body)
+        res.status(200).json(thoughtData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const updateThought = (req, res) => {
-    Thought.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body
-    )
-        .then(thoughtData => !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(thoughtData))
-        .catch(err => res.status(500).json(err))
+const updateThought = async (req, res) => {
+    try {
+        const thoughtData = await Thought.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body
+        )
+        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const deleteThought = (req, res) => {
-    Thought.deleteOne(
-        { _id: req.params.id }
-    )
-        .then(thoughtData => !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(thoughtData))
-        .catch(err => res.status(500).json(err))
+const deleteThought = async (req, res) => {
+    try {
+        const thoughtData = await Thought.deleteOne(
+            { _id: req.params.id }
+        )
+        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const addReaction = (req, res) => {
-    Thought.findOneAndUpdate(
-        { id: req.params.thoughtId },
-        { $addToSet: { reactions: req.body } }
-    )
-        .then(userData => !userData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData))
-        .catch(err => res.status(500).json(err))
+const addReaction = async (req, res) => {
+    try {
+        const thoughtData = await Thought.findOneAndUpdate(
+            { id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body } }
+        )
+        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
 
-const deleteReaction = (req, res) => {
-    Thought.findOneAndUpdate(
-        { id: req.params.thoughtId },
-        { $pull: { reactions: req.body._id } }
-    )
-        .then(userData => !userData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData))
-        .catch(err => res.status(500).json(err))
+const deleteReaction = async (req, res) => {
+    try {
+        const thoughtData = await Thought.findOneAndUpdate(
+            { id: req.params.thoughtId },
+            { $pull: { reactions: { _id: req.body._id } } }
+        )
+        !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 }
-
 module.exports = { getThoughts, getSingleThought, createThought, updateThought, deleteThought, addReaction, deleteReaction }

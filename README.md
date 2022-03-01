@@ -232,13 +232,13 @@ This homework is graded based on the following criteria:
 
 * Satisfies all of the preceding acceptance criteria plus the following:
 
-  * Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
+  <!-- * Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database. -->
 
-  * Includes User and Thought models outlined in the homework instructions.
+  <!-- * Includes User and Thought models outlined in the homework instructions. -->
 
-  * Includes schema settings for User and Thought models as outlined in the homework instructions.
+  <!-- * Includes schema settings for User and Thought models as outlined in the homework instructions. -->
 
-  * Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
+  <!-- * Includes Reactions as the `reaction` field's subdocument schema in the Thought model. -->
 
   * Uses functionality to format queried timestamps properly.
 

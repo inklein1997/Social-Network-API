@@ -10,6 +10,7 @@ const getSingleUser = (req, res) => {
     User.findOne({ _id: req.params.id })
         .select('-__v')
         .populate('thoughts')
+        .populate('friends')
         .then(userData => {
             !userData ? res.status(404).json('User does not exist') : res.status(200).json(userData)
         })
