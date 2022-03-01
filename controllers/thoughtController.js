@@ -39,4 +39,22 @@ const deleteThought = (req, res) => {
         .catch(err => res.status(500).json(err))
 }
 
-module.exports = { getThoughts, getSingleThought, createThought, updateThought, deleteThought }
+const addReaction = (req, res) => {
+    Thought.findOneAndUpdate(
+        { id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } }
+    )
+        .then(userData => !userData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData))
+        .catch(err => res.status(500).json(err))
+}
+
+const deleteReaction = (req, res) => {
+    Thought.findOneAndUpdate(
+        { id: req.params.thoughtId },
+        { $pull: { reactions: req.body._id } }
+    )
+        .then(userData => !userData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData))
+        .catch(err => res.status(500).json(err))
+}
+
+module.exports = { getThoughts, getSingleThought, createThought, updateThought, deleteThought, addReaction, deleteReaction }
