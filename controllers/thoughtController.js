@@ -1,4 +1,4 @@
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 const getThoughts = async (req, res) => {
     try {
@@ -22,8 +22,14 @@ const getSingleThought = async (req, res) => {
 
 const createThought = async (req, res) => {
     try {
+    console.log(req.body.username)
         const thoughtData = await Thought.create(req.body)
-        res.status(200).json(thoughtData)
+        const userData = await User.findOneAndUpdate(
+            {username: req.body.username},
+            {$addToSet: {thoughts: thoughtData._id}},
+            {new: true}
+        )
+        res.status(200).json(userData)
     } catch (err) {
         res.status(500).json(err)
     }
@@ -46,6 +52,12 @@ const deleteThought = async (req, res) => {
         const thoughtData = await Thought.deleteOne(
             { _id: req.params.id }
         )
+        const UserThoughtData = await User.findOneAndUpdate(
+            {thoughts: req.params.id },
+            {$pull: {thoughts: req.params.id}},
+            {new: true}
+            )
+        
         !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(userData)
     } catch (err) {
         res.status(500).json(err)
