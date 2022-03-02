@@ -25,8 +25,8 @@
 - ### [URL to Github Repository](https://github.com/inklein1997/Social-Network-API)
 | Video Walkthrough |
 | ----------- |
-| [Part 1 -- Products Route](https://drive.google.com/file/d/1slU3bNGSanfno8tYApuIn5UCH7V6yxkn/view) |
-| [Part 2 -- Categories Route](https://drive.google.com/file/d/10GCLVyWpLqB-82z_nAqUkS7__7w5-FTb/view) |
+| [Part 1 -- Creating the DB, Starting the server, and User Routes](https://drive.google.com/file/d/1AA18a5BF82z3Y9YC-vtXx7-G3TmasZyB/view) |
+| [Part 2 -- Thought Routes](https://drive.google.com/file/d/1Jay4o5WyMe5zRRa_IhjzGazZab0EA5JY/view) |
 
 ## Installation Instructions
 Since **Social Network API** is primarily a NodeJS application, you must have NodeJS downloaded. Please download [here](https://nodejs.org/en/download/) if you have not done so previously.
@@ -78,9 +78,8 @@ npm run seed
 If you would like to watch a video runthrough of each of the routes, please click on the following below...
 | Video Walkthrough |
 | ----------- |
-| [Part 2 -- Products Route](https://drive.google.com/file/d/1slU3bNGSanfno8tYApuIn5UCH7V6yxkn/view) |
-| [Part 3 -- Categories Route](https://drive.google.com/file/d/10GCLVyWpLqB-82z_nAqUkS7__7w5-FTb/view) |
-| [Part 4 -- Tags Route](https://drive.google.com/file/d/11O5aBYezHO-L8uxhiiFtwFJ20hxdrig-/view) |
+| [Part 1 -- Creating the DB, Starting the server, and User Routes](https://drive.google.com/file/d/1AA18a5BF82z3Y9YC-vtXx7-G3TmasZyB/view) |
+| [Part 2 -- Thought Routes](https://drive.google.com/file/d/1Jay4o5WyMe5zRRa_IhjzGazZab0EA5JY/view) |
 
 ## License
 This project is licensed under the terms of [MIT](https://opensource.org/licenses/MIT).

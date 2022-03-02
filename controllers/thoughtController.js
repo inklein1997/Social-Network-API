@@ -75,17 +75,18 @@ const addReaction = async (req, res) => {
             { $addToSet: { reactions: req.body } },
             { new: true }
         )
-        console.log(thoughtData)
+        // console.log(thoughtData)
 
         !thoughtData ? res.status(404).json('Thought does not exist') : res.status(200).json(thoughtData)
     } catch (err) {
+        console.log(err)
         res.status(500).json(err)
     }
 }
 
 const deleteReaction = async (req, res) => {
     try {
-        console.log('testing')
+        // console.log('testing')
         const thoughtData = await Thought.findOneAndUpdate(
             { id: req.params.thoughtId },
             { $pull: { reactions: { _id: req.body } } },
