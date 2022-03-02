@@ -5,17 +5,12 @@ const { users } = require('./data')
 connection.on('error', err => err)
 
 connection.once('open', async () => {
-    console.log('connected to database');
+    console.log('created Social Network API database');
 
     await User.deleteMany({});
     await Thought.deleteMany({});
 
-    // const reactions = [];
-
-    // User.insertMany(users, (err, userData) =>
-    //     err ? console.error(err) : console.log(userData)
-    // )
-
+    await connection.close()
 
 
 })
